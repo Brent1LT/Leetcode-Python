@@ -28,22 +28,58 @@ class Solution:
 
 
 def lengthOfLongestSubstring(self, s: str) -> int:
+  # non optimal solution
+
+  # if len(s) == 0:
+  #   return 0
+  # chars = {}
+  # longest = -math.inf
+  # i = 0
+  # start = 0
+  # while i < len(s):
+  #   if s[i] not in chars:
+  #     chars[s[i]] = i
+  #   else:
+  #     longest = i - start if i - start > longest else longest
+  #     start = chars[s[i]] + 1
+  #     i = chars[s[i]]
+  #     chars = {}
+
+  #   i += 1
+
+  # longest = i - start if i - start > longest else longest
+  # return longest
+
+# my other solution better time complexity
+
   if len(s) == 0:
     return 0
   chars = {}
   longest = -math.inf
-  i = 0
+  current = 0
   start = 0
-  while i < len(s):
-    if s[i] not in chars:
-      chars[s[i]] = i
+  while current < len(s):
+    if s[current] not in chars:
+      chars[s[current]] = current
     else:
-      longest = i - start if i - start > longest else longest
-      start = chars[s[i]] + 1
-      i = chars[s[i]]
-      chars = {}
+      longest = current - start if current - start > longest else longest
+      start = max(start, chars[s[current]] + 1)
+      chars[s[current]] = current
+      
+    current += 1
 
-    i += 1
-
-  longest = i - start if i - start > longest else longest
+  longest = current - start if current - start > longest else longest  
   return longest
+
+# most optimal solution
+
+windowStart, maxLength = 0, 0
+hashmap = {}
+for windowEnd in range(len(s)):
+if s[windowEnd] in hashmap:
+# If the element is present in the hashmap then start considering from that position.
+# Also make sure to take the greatest of the then windowStart value and the value present in the hashmap
+  windowStart = max(windowStart ,hashmap[s[windowEnd]] + 1)
+hashmap[s[windowEnd]] = windowEnd
+maxLength = max(maxLength, windowEnd - windowStart + 1)
+return maxLength
