@@ -73,13 +73,13 @@ def lengthOfLongestSubstring(self, s: str) -> int:
 
 # most optimal solution
 
-windowStart, maxLength = 0, 0
-hashmap = {}
-for windowEnd in range(len(s)):
-if s[windowEnd] in hashmap:
-# If the element is present in the hashmap then start considering from that position.
-# Also make sure to take the greatest of the then windowStart value and the value present in the hashmap
-  windowStart = max(windowStart ,hashmap[s[windowEnd]] + 1)
-hashmap[s[windowEnd]] = windowEnd
-maxLength = max(maxLength, windowEnd - windowStart + 1)
-return maxLength
+  # windowStart, maxLength = 0, 0
+  # hashmap = {}
+  # for windowEnd in range(len(s)):
+  # if s[windowEnd] in hashmap:
+  # # If the element is present in the hashmap then start considering from that position.
+  # # Also make sure to take the greatest of the then windowStart value and the value present in the hashmap
+  #   windowStart = max(windowStart ,hashmap[s[windowEnd]] + 1)
+  # hashmap[s[windowEnd]] = windowEnd
+  # maxLength = max(maxLength, windowEnd - windowStart + 1)
+  # return maxLength
