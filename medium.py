@@ -51,7 +51,6 @@ def lengthOfLongestSubstring(self, s: str) -> int:
   # return longest
 
 # my other solution better time complexity
-
   if len(s) == 0:
     return 0
   chars = {}
