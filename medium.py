@@ -25,3 +25,25 @@ class Solution:
     for el in answer:
       result.append(int(el))
     return result
+
+
+def lengthOfLongestSubstring(self, s: str) -> int:
+  if len(s) == 0:
+    return 0
+  chars = {}
+  longest = -math.inf
+  i = 0
+  start = 0
+  while i < len(s):
+    if s[i] not in chars:
+      chars[s[i]] = i
+    else:
+      longest = i - start if i - start > longest else longest
+      start = chars[s[i]] + 1
+      i = chars[s[i]]
+      chars = {}
+
+    i += 1
+
+  longest = i - start if i - start > longest else longest
+  return longest
