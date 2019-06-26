@@ -16,3 +16,15 @@ var hasCycle = function (head) {
 
   return false;
 };
+
+// find max triplet product of arr
+// O(nlog(n)) because of sorting
+
+var maximumProduct = function (nums) {
+  let sortedNums = nums.slice().sort((a, b) => a - b);
+  let size = sortedNums.length;
+
+  let ans1 = sortedNums[0] * sortedNums[1] * sortedNums[size - 1];
+  let ans2 = sortedNums[size - 1] * sortedNums[size - 2] * sortedNums[size - 3]
+  return Math.max(ans1, ans2);
+};
