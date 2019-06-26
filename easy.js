@@ -101,7 +101,7 @@ function convert(int){
   if (divisor == 10){
     stringified = `${TENS[number - 2]} `;
   }else if (divisor == 100){
-    stringified = ONES[number] + ' hundred ';
+    stringified = ONES[number] + ' hundred and ';
   }else {
     stringified = ONES[number] + ' thousand ';
   }
