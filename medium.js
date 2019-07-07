@@ -22,3 +22,15 @@ var detectCycle = function (head) {
 
   return null;
 };
+
+// find min in a rotated but sorted array
+// O(n) solution
+var findMin = function (nums) {
+  let min = nums[0];
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] < min) min = nums[i];
+  }
+  return min;
+};
+
+// O(log(n)) solution
