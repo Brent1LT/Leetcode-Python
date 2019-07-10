@@ -59,19 +59,21 @@ var findMin = function (nums) {
 var threeSum = function (nums) {
   let result = [];
   let sorted = nums.slice(0).sort((a, b) => a - b);
-  for (let i = 0; i < sorted.length - 3; i++) {
+  for (let i = 0; i < sorted.length - 2; i++) {
+    while (sorted[i] === sorted[i - 1]) {
+      i += 1;
+    }
     let equalizer = sorted[i];
     let j = i + 1;
     let k = sorted.length - 1;
     while (j < k) {
-      if (j + k === -equalizer) {
+      if (sorted[j] + sorted[k] === -equalizer) {
         result.push([equalizer, sorted[j], sorted[k]]);
         j += 1;
         while (sorted[j] === sorted[j - 1]) {
           j += 1;
         }
-      }
-      if (j + k > -equalizer) {
+      } else if (sorted[j] + sorted[k] > -equalizer) {
         k -= 1;
       } else {
         j += 1;
