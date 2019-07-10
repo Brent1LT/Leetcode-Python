@@ -54,3 +54,30 @@ var findMin = function (nums) {
     }
   }
 };
+
+// O(n^2) solution
+var threeSum = function (nums) {
+  let result = [];
+  let sorted = nums.slice(0).sort((a, b) => a - b);
+  for (let i = 0; i < sorted.length - 3; i++) {
+    let equalizer = sorted[i];
+    let j = i + 1;
+    let k = sorted.length - 1;
+    while (j < k) {
+      if (j + k === -equalizer) {
+        result.push([equalizer, sorted[j], sorted[k]]);
+        j += 1;
+        while (sorted[j] === sorted[j - 1]) {
+          j += 1;
+        }
+      }
+      if (j + k > -equalizer) {
+        k -= 1;
+      } else {
+        j += 1;
+      }
+    }
+  }
+
+  return result;
+};
