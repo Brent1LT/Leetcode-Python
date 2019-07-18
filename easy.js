@@ -155,3 +155,26 @@ var plusOne = function (digits) {
 
   return res.reverse();
 };
+
+var isValid = function (str) {
+  let pairs = {
+    '}': '{',
+    ')': '(',
+    ']': '['
+  };
+
+  let stack = [];
+
+  for (let i = 0; i < str.length; i++) {
+    let current = str[i];
+    if (pairs[current]) {
+      let check = stack.pop();
+      if (pairs[current] != check) return false;
+    } else {
+      stack.push(current);
+    }
+  }
+
+  if (stack.length) return false;
+  return true;
+};
