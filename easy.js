@@ -138,3 +138,20 @@ var countAndSay = function (n) {
 
   return res;
 };
+
+var plusOne = function (digits) {
+  let res = digits.slice().reverse();
+  res[0] += 1;
+  let i = 0;
+  while (res[i] >= 10) {
+    res[i] = 0;
+    if (i + 1 === res.length) {
+      res.push(1);
+    } else {
+      res[i + 1] += 1;
+    }
+    i += 1;
+  }
+
+  return res.reverse();
+};
