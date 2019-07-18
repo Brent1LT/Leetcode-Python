@@ -116,3 +116,25 @@ console.log(convert(123));
 console.log(convert(999));
 console.log(convert(1115));
 console.log(convert(9345));
+
+
+var countAndSay = function (n) {
+  let res = '1';
+
+  for (let i = 1; i < n; i++) {
+    let temp = '';
+    let count = 1;
+    for (let j = 0; j < res.length; j++) {
+      if (res[j] === res[j + 1]) {
+        count += 1;
+      } else {
+        temp += `${count}${res[j]}`;
+        count = 1;
+      }
+    }
+    res = temp;
+  }
+
+
+  return res;
+};
