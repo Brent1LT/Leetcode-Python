@@ -178,3 +178,41 @@ var isValid = function (str) {
   if (stack.length) return false;
   return true;
 };
+
+// O(n*m) can reduce amount of code
+var mergeTwoLists = function (l1, l2) {
+  if (l1 === null && l2 === null) return null;
+  if (l1 === null) return l2;
+  if (l2 === null) return l1;
+  let head;
+  let current1 = l1;
+  let current2 = l2;
+
+  if (l1.val <= l2.val) {
+    head = new ListNode(l1.val);
+    current1 = current1.next;
+  } else {
+    head = new ListNode(l2.val);
+    current2 = current2.next;
+  }
+
+  let currentH = head;
+
+  while (current1 && current2) {
+    if (current1.val <= current2.val) {
+      currentH.next = new ListNode(current1.val);
+      current1 = current1.next;
+    } else {
+      currentH.next = new ListNode(current2.val);
+      current2 = current2.next;
+    }
+    currentH = currentH.next;
+  }
+
+  if (current1) {
+    currentH.next = current1;
+  } else {
+    currentH.next = current2;
+  }
+  return head;
+};
