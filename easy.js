@@ -179,7 +179,7 @@ var isValid = function (str) {
   return true;
 };
 
-// O(n*m) can reduce amount of code
+// O(n*m) can reduce amount of code O(n*m) space
 var mergeTwoLists = function (l1, l2) {
   if (l1 === null && l2 === null) return null;
   if (l1 === null) return l2;
@@ -204,6 +204,45 @@ var mergeTwoLists = function (l1, l2) {
       current1 = current1.next;
     } else {
       currentH.next = new ListNode(current2.val);
+      current2 = current2.next;
+    }
+    currentH = currentH.next;
+  }
+
+  if (current1) {
+    currentH.next = current1;
+  } else {
+    currentH.next = current2;
+  }
+  return head;
+};
+
+// O(n*m) time, O(1) space, less code
+
+var mergeTwoLists = function (l1, l2) {
+  if (l1 === null && l2 === null) return null;
+  if (l1 === null) return l2;
+  if (l2 === null) return l1;
+  let current1 = l1;
+  let current2 = l2;
+  let currentH;
+
+
+  if (l1.val <= l2.val) {
+    currentH = l1;
+    current1 = current1.next;
+  } else {
+    currentH = l2;
+    current2 = current2.next;
+  }
+  let head = currentH;
+
+  while (current1 && current2) {
+    if (current1.val <= current2.val) {
+      currentH.next = current1;
+      current1 = current1.next;
+    } else {
+      currentH.next = current2;
       current2 = current2.next;
     }
     currentH = currentH.next;
