@@ -255,3 +255,23 @@ var mergeTwoLists = function (l1, l2) {
   }
   return head;
 };
+
+// Very time inefficient O(n^2) 
+var longestCommonPrefix = function (strs) {
+  if (!strs.length) return "";
+  let prefixes = "";
+  strs.sort((a, b) => a.length - b.length);
+
+  for (let i = 0; i < strs[0].length; i++) {
+    let char = strs[0][i];
+    for (let j = 0; j < strs.length; j++) {
+      if (j === strs.length - 1 && strs[j][i] === char) {
+        prefixes += char;
+      } else if (strs[j][i] !== char) {
+        return prefixes;
+      }
+    }
+  }
+
+  return prefixes;
+};
