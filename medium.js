@@ -103,6 +103,7 @@ var inorderArray = function (root) {
   return inorderArray(root.left).concat([root.val]).concat(inorderArray(root.right));
 }
 
+// not finihsed yet
 var deleteNode = function (root, key) {
   // console.log('NEW NODE:', root.val)
   if (root === null) return root;
