@@ -83,3 +83,54 @@ var threeSum = function (nums) {
 
   return result;
 };
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} key
+ * @return {TreeNode}
+ */
+
+var inorderArray = function (root) {
+  if (!root) return [];
+
+  return inorderArray(root.left).concat([root.val]).concat(inorderArray(root.right));
+}
+
+var deleteNode = function (root, key) {
+  // console.log('NEW NODE:', root.val)
+  if (root === null) return root;
+  if (root.val < key) {
+    root.right = deleteNode(root.right, key);
+  } else if (root.val > key) {
+    root.left = deleteNode(root.left, key);
+  } else {
+    if (!root.left && !root.right) {
+      root = null;
+    } else if (!root.left && root.right) {
+      root.val = root.right.val;
+      root.right = null;
+    } else if (root.left && !root.right) {
+      root.val = root.left.val;
+      root.left = null;
+    } else {
+      let inorder = inorderArray(root);
+      for (let i = 0; i < inorder.length; i++) {
+        if (inorder[i] === root.val) {
+          root.val = inorder[i + 1];
+          root.right = deleteNode(root.right, inorder[i + 1]);
+          break;
+        }
+      }
+    }
+  }
+
+  // console.log(inorderArray(root))
+  return root;
+};
