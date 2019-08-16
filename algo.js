@@ -95,3 +95,37 @@ function switchable(str1, str2){
   return true;
 }
 
+// not best time solution
+function spellingBeeSolutions(wordlist, puzzles) {
+  // Write your code here
+  let result = [];
+  for (let index = 0; index < puzzles.length; index++) {
+    let count = 0;
+    let puzzle = puzzles[index];
+    let set = new Set(...puzzle.split());
+
+    for (let current = 0; current < wordlist.length; current++) {
+      let word = wordlist[current];
+      if (!word.includes(puzzle[0])) continue;
+      let add = true;
+      for (let letter = 0; letter < word.length; letter++) {
+        if (!set.has(word[letter])) add = false;
+      }
+
+      if (add) count += 1;
+    }
+
+    result.push(count);
+  }
+
+  return result;
+}
+
+// input:
+//  wordlist = ["APPLE", 'PLEAS', 'PLEASE'] 
+//  puzzles = ['AELWXYZ', 'AELPXYZ', 'AELPSXY', 'SAELPXY', 'XAELPSY']
+
+//output: 
+//  [0, 1, 3, 2, 0] 
+//can make 0 of the words with first puzzle, 1 with the second, etc.
+//and none of the words contain the key letter 'X' for the last one 
