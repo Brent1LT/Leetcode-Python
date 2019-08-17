@@ -113,7 +113,7 @@ var inorderArray = function (root) {
 };
 
 //condensed and finished code
-// O(log(n)) 
+// O(height of tree) 
 var deleteNode = function (root, key) {
   if (root === null) return root;
   if (root.val < key) {
