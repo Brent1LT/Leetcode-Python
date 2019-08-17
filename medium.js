@@ -103,9 +103,18 @@ var inorderArray = function (root) {
   return inorderArray(root.left).concat([root.val]).concat(inorderArray(root.right));
 }
 
-// not finihsed yet
+
+
+//helper func
+var inorderArray = function (root) {
+  if (!root) return [];
+
+  return inorderArray(root.left).concat([root.val]).concat(inorderArray(root.right));
+};
+
+//condensed and finished code
+// O(log(n)) 
 var deleteNode = function (root, key) {
-  // console.log('NEW NODE:', root.val)
   if (root === null) return root;
   if (root.val < key) {
     root.right = deleteNode(root.right, key);
@@ -115,11 +124,9 @@ var deleteNode = function (root, key) {
     if (!root.left && !root.right) {
       root = null;
     } else if (!root.left && root.right) {
-      root.val = root.right.val;
-      root.right = null;
+      root = root.right;
     } else if (root.left && !root.right) {
-      root.val = root.left.val;
-      root.left = null;
+      root = root.left;
     } else {
       let inorder = inorderArray(root);
       for (let i = 0; i < inorder.length; i++) {
@@ -132,6 +139,5 @@ var deleteNode = function (root, key) {
     }
   }
 
-  // console.log(inorderArray(root))
   return root;
 };
