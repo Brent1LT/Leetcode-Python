@@ -167,3 +167,22 @@ var oddEvenList = function (head) {
   return head;
 };
 
+
+// O(n) time O(1) space
+var maxArea = function (height) {
+  let max = 0;
+  let i = 0;
+  let j = height.length - 1;
+
+  while (i < j) {
+    if (height[i] < height[j]) {
+      max = Math.max(height[i] * (j - i), max);
+      i++;
+    } else {
+      max = Math.max(height[j] * (j - i), max);
+      j--;
+    }
+  }
+
+  return max;
+};
