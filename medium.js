@@ -141,3 +141,29 @@ var deleteNode = function (root, key) {
 
   return root;
 };
+
+// O(n) time solution and O(1) space 
+var oddEvenList = function (head) {
+  if (!head || !head.next) return head;
+  let evenHead = head.next;
+  let currentOdd = head;
+  let currentEven = head.next;
+  let current = head.next.next;
+  let counter = 1;
+  while (current) {
+    if (counter % 2 === 0) {
+      currentEven.next = current;
+      currentEven = currentEven.next
+    } else {
+      currentOdd.next = current;
+      currentOdd = currentOdd.next;
+    }
+    current = current.next;
+    counter += 1;
+  }
+
+  currentEven.next = null;
+  currentOdd.next = evenHead;
+  return head;
+};
+
